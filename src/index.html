@@ -1,0 +1,148 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>DBLP Paper Retrival</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	<script src="https://unpkg.com/element-ui@2.15.7/lib/index.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<style type="text/css">
+	body {
+		width: 80%;
+		margin: 0 auto;
+	}
+	#searchbox {
+		margin-top: 50px;
+		margin-bottom: 20px;
+	}
+	#inputbox {
+		height: 25px;
+		width: 300px;
+		font-size: 20px;
+		font-family: Verdana;
+	}
+	#my_button {
+		background-color: #ddd;
+		width: 80px;
+		height: 30px;
+		text-align: center;
+		vertical-align: top;
+		display: inline-block;
+		border: 1px solid black;
+		font-family: "微软雅黑";
+	}
+	.content {
+		height: 150px;
+		width: 632px;
+		border: 1px solid black;
+		border-radius: 5px;
+		margin-top: 8px;
+	}
+	.title {
+		height: line-height;
+		background-color: #ddd;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+		padding-left: 20px;
+		
+	}
+	#hint {
+		margin-top: 5px;
+		font-family: Verdana;
+		font-size: 12px;
+		visibility: hidden;
+	}
+	a {
+		text-decoration: none;
+		display: inline;
+		line-height: 30px;
+		text-indent: 2em;
+		font-size: 15px;
+		font-family: Verdana;
+	}
+	p {
+		display: inline-block;
+		margin-left: 30px;
+		margin-right: 30px;
+		font-family: Verdana;
+	}
+</style>
+</head>
+<body>
+<div id="searchbox">
+		<input type="text" name="query" width="100" id="inputbox" value="">
+		<button v-on:click="send_query" type="button" id="my_button">Search</button><br>
+		<input type="radio" name="searchType" value="title" checked="checked">title
+		<input type="radio" name="searchType" value="author">author
+		<input type="radio" name="searchType" value="journal">journal
+		<select name="journalType">
+            <option value="TIIS" selected="selected">TIIS</option>
+            <option value="TIST">TIST</option>
+            <option value="TKDD">TKDD</option>
+            <option value="TOIS">TOIS</option>
+            <option value="TOIT">TOIT</option>
+            <option value="TWEB">TWEB</option>
+        </select>
+    <br>
+</div>
+<div id="result_box">
+
+</div>
+</body>
+
+<script type = "text/javascript">
+	var vm2 = new Vue({
+	  el: '#searchbox',
+	  data: {
+	  },
+	  methods: {
+		send_query: function(event){
+		  document.getElementById('result_box').innerHTML = "";
+		  var query = 'query=' + document.getElementById('inputbox').value
+
+		  var searchType = ''
+		  var radio_tag = document.getElementsByName('searchType')
+		  for (var i=0;i<radio_tag.length;i++){
+			  if(radio_tag[i].checked){
+				searchType=radio_tag[i].value;
+				break
+			  }
+		  }
+		  query += '&searchType=' + searchType
+
+		  if (searchType=='journal'){
+			var selects = document.getElementsByName('journalType')
+			var id = selects[0].selectedIndex
+			query += '&journal=' + selects[0][id].value
+		  }
+
+		  var ajax = new XMLHttpRequest();
+		  ajax.open('get','http://127.0.0.1:5566/' + query);
+		  ajax.send(null);
+		  ajax.onreadystatechange = function () {
+			if (ajax.readyState==4 && ajax.status==200) {
+			  lines = ajax.responseText.split('\n')
+			  for (var i=0;i<lines.length;i++){
+				  createDIV(lines[i])
+			  }
+			}
+		  }
+		}
+	  }
+	})
+	
+	function createDIV(line) {
+		var rb = document.getElementById('result_box')
+		var paras = line.split("&")
+		rb.innerHTML += '<div class=\"content\"> \
+			<div class=\"title\"><a href=\"'+paras[5].split("#")[1]+'\" target=\"_blank\">'+paras[1].split("#")[1]+'</a></div> \
+			<p> \
+				Author(s):  '+ paras[2].split("#")[1] +'<br> \
+				Journal:  '+ paras[4].split("#")[1] +'<br> \
+				Year of Publication:  '+ paras[3].split("#")[1] +' \
+			</p> \
+		</div>'
+	}
+  </script>
+</html>

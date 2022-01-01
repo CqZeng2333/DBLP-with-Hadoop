@@ -1,3 +1,3 @@
 # DBLP-with-Hadoop
 
-Readme in [readme](./src/Zeng_Chuqian_term_project.pdf)
+Readme in [readme](./Zeng_Chuqian_term_project.pdf)

@@ -177,7 +177,7 @@ public class Index {
 			}
 		}
 		
-		double tf;
+//		double tf;
 		// Iterate the index to count TF weight
 //		for (String term : result.keySet()) {
 //			tf = result.get(term);

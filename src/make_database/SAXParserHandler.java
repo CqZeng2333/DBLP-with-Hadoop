@@ -45,7 +45,6 @@ public class SAXParserHandler extends DefaultHandler {
         if(types.contains(qName)) {
             doc = new Document();
             isEnd = false;
-            doc.setDoc_type(qName);
         }
     }
       

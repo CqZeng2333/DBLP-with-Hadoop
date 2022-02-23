@@ -1,8 +1,7 @@
 package utils;
 
 public class Document {
-	private int doc_id;
-	private String doc_type;  
+	private int doc_id; 
     private String authors;  
     private String doc_title;  
     private int doc_year;  
@@ -69,15 +68,7 @@ public class Document {
 
 	public void setDoc_id(int doc_id) {
 		this.doc_id = doc_id;
-	}
-	
-    public String getDoc_type() {  
-        return doc_type;  
-    }  
-  
-    public void setDoc_type(String doc_type) {  
-        this.doc_type = doc_type;  
-    }  
+	}  
   
     public String getAuthors() {  
         return authors;  

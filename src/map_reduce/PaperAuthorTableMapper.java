@@ -15,7 +15,7 @@ public class PaperAuthorTableMapper extends Mapper<Object, PaperDBWritable, Text
 	protected void map(Object key, PaperDBWritable value,
 			Mapper<Object, PaperDBWritable, Text, Text>.Context context)
 			throws IOException, InterruptedException {
-		String doc = value.getDoc_title() + " " + String.join(" ", value.getAuthors().split("|")); // title and author
+		String doc = value.getDoc_title() + " " + value.getAuthors(); // title and author
 		System.out.println(doc + " " + value.getDoc_id());
 		String[] termList = Index.tokenize(doc);
 		Text tf = new Text(String.format("%.16f", new Double(1 / ((double)termList.length)))); // Term frequency for each word in the document

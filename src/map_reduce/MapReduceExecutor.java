@@ -89,14 +89,14 @@ public class MapReduceExecutor {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		MapReduceExecutor mre = new MapReduceExecutor();
-		mre.executeTitle();
+//		mre.executeTitle();
 		mre.executeAuthor();
-		mre.executeJournal("ACM Trans. Interact. Intell. Syst.", "TIIS");
-		mre.executeJournal("ACM Trans. Intell. Syst. Technol.", "TIST");
-		mre.executeJournal("ACM Trans. Knowl. Discov. Data", "TKDD");
-		mre.executeJournal("ACM Trans. Inf. Syst.", "TOIS");
-		mre.executeJournal("ACM Trans. Internet Techn.", "TOIT");
-		mre.executeJournal("ACM Trans. Web", "TWEB");
+//		mre.executeJournal("ACM Trans. Interact. Intell. Syst.", "TIIS");
+//		mre.executeJournal("ACM Trans. Intell. Syst. Technol.", "TIST");
+//		mre.executeJournal("ACM Trans. Knowl. Discov. Data", "TKDD");
+//		mre.executeJournal("ACM Trans. Inf. Syst.", "TOIS");
+//		mre.executeJournal("ACM Trans. Internet Techn.", "TOIT");
+//		mre.executeJournal("ACM Trans. Web", "TWEB");
 		
 	}
 }

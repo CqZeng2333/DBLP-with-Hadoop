@@ -93,7 +93,7 @@ public class Selector {
 				id = iter.next();
 				rset = stmt.executeQuery(str + id.toString());
 				if (rset.next()) {
-					yearGap.put(id, 2018 - Integer.parseInt(rset.getString("published_year")));
+					yearGap.put(id, 2022 - Integer.parseInt(rset.getString("published_year")));
 				}
 			}
 			

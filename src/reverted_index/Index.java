@@ -171,18 +171,18 @@ public class Index {
 			stemmer.stem();
 			s = stemmer.toString();
 			if (!result.containsKey(s)) { // term not in the index
-				result.put(s, 1 / (double)s.length());
+				result.put(s, 1 / ((double)str.length + 1));
 			} else { //term already in the index, then term frequency plus one
-				result.put(s, result.get(s) + 1 / (double)s.length());
+				result.put(s, result.get(s) + 1 / ((double)s.length() + 1));
 			}
 		}
 		
 		double tf;
 		// Iterate the index to count TF weight
-		for (String term : result.keySet()) {
-			tf = result.get(term);
-			result.replace(term, (tf + Math.log(0.5)));
-		}
+//		for (String term : result.keySet()) {
+//			tf = result.get(term);
+//			result.replace(term, (tf * Math.log(0.5)));
+//		}
 		return result;
 	}
 	

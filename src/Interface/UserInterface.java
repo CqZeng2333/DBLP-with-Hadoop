@@ -9,21 +9,6 @@ import reverted_index.Index;
 import utils.SearchType;
 
 public class UserInterface {
-//	public static void main(String[] args) {
-//		Index index = new Index();
-//		index.loadTF_IDF("data/paper-retrieval/title/part-r-00000");
-//		//index.loadTF_IDF("data/paper-retrieval/author/part-r-00000");
-//		//index.loadTF_IDF("data/paper-retrieval/journal/TIIS/part-r-00000");
-//		index.countAll();
-//		
-//		TreeMap<String, Double> queryValue = index.getQuery("security");
-//		TreeMap<Double, Integer> topK = index.getTopK(10, queryValue);
-//		TreeMap<Double, Document> result = Selector.getDoc(topK);
-//		System.out.println("Retrieval Result: ");
-//		for (Document d : result.values()) {
-//			System.out.println(d);
-//		}
-//	}
 	
 	public static ArrayList<String> query(String query, String sType, String journal) {
 		if (query == null) {
